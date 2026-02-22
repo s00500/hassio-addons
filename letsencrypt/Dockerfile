@@ -14,7 +14,6 @@ ARG \
     CERTBOT_DNS_AZURE_VERSION \
     CERTBOT_DNS_EURODNS_VERSION \
     CERTBOT_DNS_HURRICANE_ELECTRIC_VERSION \
-    CERTBOT_DNS_MULTI_VERSION \
     CERTBOT_DNS_NORISNETWORK_VERSION \
     CERTBOT_VERSION \
     CRYPTOGRAPHY_VERSION
@@ -26,6 +25,7 @@ RUN \
         build-essential \
         ca-certificates \
         cargo \
+        git \
         golang \
         libffi8 \
         libffi-dev \
@@ -42,12 +42,13 @@ RUN \
         certbot-dns-eurodns==${CERTBOT_DNS_EURODNS_VERSION} \
         certbot-dns-gehirn==${CERTBOT_VERSION} \
         certbot-dns-hurricane-electric==${CERTBOT_DNS_HURRICANE_ELECTRIC_VERSION} \
-        certbot-dns-multi==${CERTBOT_DNS_MULTI_VERSION} \
+        "certbot-dns-multi @ git+https://github.com/alexzorin/certbot-dns-multi.git@main" \
         certbot-dns-norisnetwork==${CERTBOT_DNS_NORISNETWORK_VERSION} \
         cryptography==${CRYPTOGRAPHY_VERSION} \
     && apt-get purge -y --auto-remove \
         build-essential \
         cargo \
+        git \
         golang \
         libffi-dev \
         libssl-dev \
